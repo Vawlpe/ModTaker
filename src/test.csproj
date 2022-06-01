@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="../ref/Assembly-CSharp.dll" />
+    <Reference Include="../ref/Assembly-CSharp-firstpass.dll" />
+
+    <Reference Include="../ref/MonoMod.dll" />
+    <Reference Include="../ref/MonoMod.RuntimeDetour.dll" />
+    <Reference Include="../ref/MonoMod.Utils.dll" />
+
+    <Reference Include="../ref/UnityEngine.dll" />
+    <Reference Include="../ref/UnityEngine.CoreModule.dll" />
+    <Reference Include="../ref/UnityEngine.UI.dll" />
+    <Reference Include="../ref/UnityEngine.UIElementsModule.dll" />
+    <Reference Include="../ref/UnityEngine.UIModule.dll" />
+    <Reference Include="../ref/UnityEngine.AnimationModule.dll" />
+    <Reference Include="../ref/UnityEngine.AudioModule.dll" />
+    <Reference Include="../ref/UnityEngine.InputModule.dll" />
+    <Reference Include="../ref/UnityEngine.InputLegacyModule.dll" />
+    <Reference Include="../ref/UnityEngine.TextCoreModule.dll" />
+    <Reference Include="../ref/UnityEngine.TextRenderingModule.dll" />
+  </ItemGroup>
+</Project>
