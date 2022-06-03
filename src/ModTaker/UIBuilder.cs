@@ -5,9 +5,10 @@ namespace ModTaker
 {
 	public class UI
 	{
-		public static GameObject Build(UIItem[] uiItems)
+		public static GameObject Build(String Name, UIItem[] uiItems)
 		{
 			var g = new GameObject();
+			g.name = Name;
 			
 			var c = g.AddComponent<Canvas>();
 			c.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -21,12 +22,7 @@ namespace ModTaker
 			
 			var cr = g.AddComponent<GraphicRaycaster>();
 
-			foreach (UIItem uiItem in uiItems)
-			{
-				var i = uiItem.Build();
-				i.transform.SetParent(g.transform);
-			}
-
+			Array.ForEach(uiItems, uiItem => uiItem.Build().transform.SetParent(g.transform));
 			return g;
 		}
 	}
@@ -34,7 +30,7 @@ namespace ModTaker
 	public class UIItem
 	{
 		public string Name      = String.Empty;
-		public GameObject GO    = new GameObject();
+		public GameObject GO    = null;
 		
 		public Vector2 Position = Vector2.zero;
 		public Vector2 Size     = Vector2.zero;
@@ -46,6 +42,7 @@ namespace ModTaker
 
 		public virtual GameObject Build()
 		{
+			GO = new GameObject();
 			GO.name = Name;
 			var RT = GO.AddComponent<RectTransform>();
 			RT.anchorMin = Anchor;

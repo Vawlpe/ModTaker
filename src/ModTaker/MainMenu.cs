@@ -16,25 +16,37 @@ namespace ModTaker
 			Quit
 		}
 
+		// Menu state declarations
+		public Dictionary<string, GameObject> menuObjects;
+
 		public MenuState CurrentMenuState = MenuState.Main;
-		public GameObject go = new GameObject();
+		public GameObject CurrentMenuCanvas;
+
 		public void toMainMenu()
 		{
 			CurrentMenuState = MenuState.Main;
-			go = MainMenuObject;
-			go.name = "MainMenu";
+			CurrentMenuCanvas = menuObjects["Main"];
+
+			CurrentMenuCanvas.SetActive(true);
 		}
 
-		public GameObject MainMenuObject = UI.Build(new UIItem[]
+		public MainMenu()
 		{
-			new UIButton() {
-				Name = "TestButton",
-				Position = new Vector2(100, 200),
-				Size = new Vector2(150, 150),
-				Text = "Test",
-				FontSize = 30,
-				Sprite = Resources.Load<Sprite>("Button")
-			}
-		});
+			menuObjects = new Dictionary<string, GameObject>()
+			{{
+				"Main", UI.Build("Main",  new UIItem[] {
+					new UIButton()
+					{
+						Name = "TestButton",
+						Text = "Test Button",
+						Position = new Vector2(0, 0),
+						Size = new Vector2(100, 100)
+					}
+				})
+			}};
+
+			// Default state is main menu
+			toMainMenu();
+		}
 	}
 }
