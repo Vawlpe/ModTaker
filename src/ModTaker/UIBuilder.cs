@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ModTaker
+namespace ModTaker.UI
 {
-	public class UI
+	public class UICanvas
 	{
 		public static GameObject Build(String Name, UIItem[] uiItems)
 		{
@@ -94,7 +94,6 @@ namespace ModTaker
 		public Font Font = Resources.GetBuiltinResource<Font>("Arial.ttf");
 		public Color Color = Color.white;
 		public TextAnchor TextAnchor = TextAnchor.UpperLeft;
-		public TextAlignment TextAlignment = TextAlignment.Left;
 		public int FontSize = 12;
 		public bool RichText = false;
 		public bool RaycastTarget = false;
@@ -107,17 +106,27 @@ namespace ModTaker
 			GO = base.Build();
 
 			var b = GO.AddComponent<Button>();
-			var i = GO.AddComponent<Image>();
-			i.sprite = Sprite;
+			
+			if (Sprite is not null)
+			{
+				var io = new GameObject(Name + "_Image");
+				io.transform.SetParent(GO.transform);
+				io.AddComponent<Image>().sprite = Sprite;
+			}
 
-			var t = GO.AddComponent<Text>();
-			t.text = Text;
-			t.font = Font;
-			t.color = Color;
-			t.alignment = (TextAnchor)TextAlignment;
-			t.fontSize = FontSize;
-			t.supportRichText = RichText;
-			t.raycastTarget = RaycastTarget;
+			if (Text != String.Empty)
+			{
+				var to = new GameObject(Name + "_Text");
+				to.transform.SetParent(GO.transform);
+				var tc = to.AddComponent<Text>();
+				tc.text = Text;
+				tc.font = Font;
+				tc.color = Color;
+				tc.alignment = TextAnchor;
+				tc.fontSize = FontSize;
+				tc.supportRichText = RichText;
+				tc.raycastTarget = RaycastTarget;
+			}
 
 			return GO;
 		}

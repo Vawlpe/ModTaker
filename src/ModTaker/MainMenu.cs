@@ -27,6 +27,7 @@ namespace ModTaker
 			CurrentMenuState = MenuState.Main;
 			CurrentMenuCanvas = menuObjects["Main"];
 
+			Array.ForEach(menuObjects.Values.ToArray(), (GameObject go) => go.SetActive(false));
 			CurrentMenuCanvas.SetActive(true);
 		}
 
@@ -34,13 +35,14 @@ namespace ModTaker
 		{
 			menuObjects = new Dictionary<string, GameObject>()
 			{{
-				"Main", UI.Build("Main",  new UIItem[] {
-					new UIButton()
+				"Main", UI.UICanvas.Build("Main",  new UI.UIItem[] {
+					new UI.Helltaker.Button()
 					{
 						Name = "TestButton",
 						Text = "Test Button",
-						Position = new Vector2(0, 0),
-						Size = new Vector2(100, 100)
+						Position = new Vector2(-400, 40),
+						Size = new Vector2(1000, 100),
+						FontSize = 30
 					}
 				})
 			}};
